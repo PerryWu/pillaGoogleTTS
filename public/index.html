@@ -23,6 +23,30 @@
 		<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
 		-->
 
+		<script>
+			$(document).ready(function() {
+				$("#pilla_btn_submit").on("click", function(e){
+					speakData = {};
+					speakData.language = $("#pilla_sel_lang ");
+					speakData.words = "abcd";
+
+					$.ajax( {
+						url: '/speak',
+						method: 'POST',
+						data: $('form#speakForm').serialize(),
+						//contentType: "application/json",
+						dataType: 'json',
+						timeout: 10000})
+					.done(function(data) {
+						console.log("done callback. data:" + data);})
+					.fail(function(jqXHR, textStatus) {
+						console.log("fail callback. xhr:" + textStatus);
+						console.log(jqXHR);
+					});
+				});
+			});
+		</script>
+
 	</head>
 
 	<body>
@@ -33,21 +57,23 @@
 				<h1>Pilla Google TTS</h1>
 			</div>
 
-			<div data-role="main">
-				<form>
+			<div data-role="main" class="ui-content">
+				<form method="post" id="speakForm">
 					<div class="ui-field-contain">
 						<label for="words"> Say something:</label>
-						<input type="text" data-clear-btn="true" name="words" id="words" value="">
-						<label for="language"> Language:</label>
-						<select name="language" id="language">
-							<option value="en">English</option>
-							<option value="zh-TW">Chinese Traditional</option>
-						</select>
+						<textarea data-clear-btn-text="true" name="words" id="words" value=""></textarea>
 					</div>
-			</div>
 
-			<div data-role="footer" data-position="fixed" class="ui-btn">
-			</div> 
+					<fieldset id="pilla_sel_lang" data-role="controlgroup">
+						<legend>Choose your language:</legend>
+						<label for="lang-en">English</label>
+						<input type="radio" name="language" id="lang-en" value="en" checked>
+						<label for="lang-tw">Chinese</label>
+						<input type="radio" name="language" id="lang-tw" value="zh-TW">
+					</fieldset>
+					<a href="#" id="pilla_btn_submit" class="ui-btn">Submit</a>
+				</form>
+			</div>
 		</div> 
 
 	</body>

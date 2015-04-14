@@ -18,7 +18,7 @@ var _ = require('lodash');
 var fs = require('fs');
 var util = require('util');
 var async = require('async');
-
+var tts = require('./lib/tts');
 // all environments
 app.set('port', process.env.PORT || 3000);
 app.set('views', __dirname + '/views');
@@ -40,11 +40,11 @@ app.get('/', function(req, res){
 	res.redirect('index.html');
 });
 
-/*
-app.get('/files', fileList.getFileList);
-app.post('/files', fileList.actFiles);
-app.get('/folders', fileList.getFolderList);
-*/
+app.post('/speak', function (req, res) {
+	console.log(req.body.words);
+	console.log(req.body.language);
+	res.send("done");
+});
 
 // development only
 if ('development' == app.get('env')) {
