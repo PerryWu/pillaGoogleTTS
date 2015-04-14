@@ -15,9 +15,6 @@ var methodOverride = require('method-override');
 var errorhandler = require('errorhandler');
 
 var _ = require('lodash');
-var fs = require('fs');
-var util = require('util');
-var async = require('async');
 var tts = require('./lib/tts');
 // all environments
 app.set('port', process.env.PORT || 3000);
@@ -41,9 +38,7 @@ app.get('/', function(req, res){
 });
 
 app.post('/speak', function (req, res) {
-	console.log(req.body.words);
-	console.log(req.body.language);
-	tts.speak(encodeURIComponent(req.body.words), req.body.language);
+	tts.speak(decodeURIComponent(req.body.words), req.body.language);
 	res.send("done");
 });
 
