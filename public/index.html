@@ -34,9 +34,16 @@
 			</div>
 
 			<div data-role="main">
-				<h3 id="mainPagePath" style="word-wrap: break-word !important"></h3>
-				<ul data-role="listview" data-inset="true" id="pilla_main_list" data-theme="a">
-				</ul>
+				<form>
+					<div class="ui-field-contain">
+						<label for="words"> Say something:</label>
+						<input type="text" data-clear-btn="true" name="words" id="words" value="">
+						<label for="language"> Language:</label>
+						<select name="language" id="language">
+							<option value="en">English</option>
+							<option value="zh-TW">Chinese Traditional</option>
+						</select>
+					</div>
 			</div>
 
 			<div data-role="footer" data-position="fixed" class="ui-btn">
