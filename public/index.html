@@ -26,10 +26,6 @@
 		<script>
 			$(document).ready(function() {
 				$("#pilla_btn_submit").on("click", function(e){
-					speakData = {};
-					speakData.language = $("#pilla_sel_lang ");
-					speakData.words = "abcd";
-
 					$.ajax( {
 						url: '/speak',
 						method: 'POST',

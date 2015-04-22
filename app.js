@@ -43,6 +43,7 @@ app.get('/', function(req, res){
 app.post('/speak', function (req, res) {
 	console.log(req.body.words);
 	console.log(req.body.language);
+	tts.speak(encodeURIComponent(req.body.words), req.body.language);
 	res.send("done");
 });
 
